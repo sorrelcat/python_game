@@ -38,7 +38,7 @@ while True:
         x += t
     elif keys[pygame.K_LEFT]:
         x -= t
-    elif keys[pygame.K_UP]:
+    if keys[pygame.K_UP]:
         y -= t
     elif keys[pygame.K_DOWN]:
         y += t
