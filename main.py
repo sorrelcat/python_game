@@ -22,8 +22,9 @@ surface.fill(WHITE)
 pygame.display.update()
 
 count = 0
-d, x, y = 30, 0, 0
+d, x, y, t = 30, 0, 0, 10
 color_r, color_g, color_b = 0, 0, 0
+motion_x, motion_y = 0, 0
 
 while True:
 
@@ -35,29 +36,31 @@ while True:
             exit()
 
         elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_DOWN:
+                motion_y = 1
+
+            elif event.key == pygame.K_UP:
+                motion_y = -1
+
+            elif event.key == pygame.K_LEFT:
+                motion_x = -1
+
+            elif event.key == pygame.K_RIGHT:
+                motion_x = 1
+
+        elif event.type == pygame.KEYUP:
             color_r += 10
             color_r %= 255
             color_g -= 10
             color_g %= 255
             color_b *= 2
             color_b %= 255
+            motion_x, motion_y = 0, 0
 
-        elif event.type == pygame.KEYUP and event.key == pygame.K_DOWN:
-            y += 10
-            y %= WIN_HEIGHT
-
-        elif event.type == pygame.KEYUP and event.key == pygame.K_UP:
-            y -= 10
-            y %= WIN_HEIGHT
-
-        elif event.type == pygame.KEYUP and event.key == pygame.K_LEFT:
-            x -= 10
-            x %= WIN_WIDTH
-
-        elif event.type == pygame.KEYUP and event.key == pygame.K_RIGHT:
-            x += 10
-            x %= WIN_WIDTH
-
+    x += motion_x*t
+    x %= WIN_WIDTH
+    y += motion_y*t
+    y %= WIN_HEIGHT
 
     count += 1
     if count%30 == 0:
