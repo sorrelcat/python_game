@@ -48,7 +48,7 @@ while True:
             elif event.key == pygame.K_RIGHT:
                 motion_x = 1
 
-        elif event.type == pygame.KEYUP:
+        elif event.type == pygame.KEYUP and event.key in [pygame.K_UP, pygame.K_DOWN, pygame.K_LEFT, pygame.K_RIGHT]:
             color_r += 10
             color_r %= 255
             color_g -= 10
