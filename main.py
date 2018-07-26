@@ -58,5 +58,12 @@ while True:
                 y -= t
         x, y = 0, 0
 
+    if keys[pygame.K_LSHIFT] and t < 10:
+        t += 1
+
+    if keys[pygame.K_RSHIFT] and t > 1:
+        t -= 1
+
+
     x %= WIN_WIDTH
     y %= WIN_HEIGHT
