@@ -22,6 +22,11 @@ def draw_rect(color):
     pygame.display.update()
     clock.tick(FPS)
 
+def draw_circle(color, pos):
+    pygame.draw.circle(surface, color, pos, d)
+    pygame.display.update()
+    clock.tick(2)
+
 pygame.init()
 draw_rect(GREEN)
 
@@ -30,6 +35,13 @@ while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             exit()
+
+    pressed = pygame.mouse.get_pressed()
+    pos = pygame.mouse.get_pos()
+    if pressed[0]:
+        draw_circle(RED, pos)
+    if pressed[2]:
+        draw_circle(BLUE, pos)
 
     keys = pygame.key.get_pressed()
     draw_rect(GREEN)
@@ -67,3 +79,8 @@ while True:
 
     x %= WIN_WIDTH
     y %= WIN_HEIGHT
+
+    '''Напишите код в котором имитируется полет снаряда (пусть его роль сыграет круг) в место клика мышью. 
+    Снаряд должен вылетать из нижнего края окна и лететь вверх, т. е. изменяться должна только координата y. 
+    Пока летит один, другой не должен появляться. Когда снаряд достигает цели, должен имитировать взрыв, 
+    например, в этом месте прорисовываться квадрат.'''
